@@ -1,0 +1,25 @@
+{
+    "geode": "4.7.1",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074",
+        "mac": "2.2074",
+        "ios": "2.2074"
+    },
+
+    "version": "v1.0.0",
+    "id": "undefined0.extra_icon_data_api",
+    "name": "Extra Icon Data API",
+    "developer": "undefined0",
+    "description": "An API for external icon data",
+    "tags": [ "api", "customization" ],
+    "early-load": true,
+
+    "links": {
+        "source": "https://github.com/undefined06855/example-mod"
+    },
+
+    "api": {
+        "include": [ "include/*.hpp" ]
+    }
+}
