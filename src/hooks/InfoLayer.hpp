@@ -11,8 +11,8 @@ class $modify(HookedInfoLayer, InfoLayer) {
         geode::EventListener<geode::utils::web::WebTask> m_uploadListener;
     };
 
+    void loadPage(int page, bool p1);
     void loadCommentsFinished(cocos2d::CCArray* comments, const char* p1);
-    void onClose(cocos2d::CCObject* sender);
 
     void addCommentCell(CommentCell* cell);
 };

@@ -80,6 +80,8 @@ void ArgonVerificationPopup::verifyArgon() {
 
     if (!auth.isOk()) {
         geode::log::warn("Failed to start auth attempt: {}", auth.unwrapErr());
+        m_content->setString(auth.unwrapErr().c_str());
+        finish();
     }
 }
 

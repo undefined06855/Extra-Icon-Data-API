@@ -7,9 +7,16 @@ HookedInfoLayer::Fields::Fields()
     : m_commentCells({})
     , m_uploadListener() {}
 
+void HookedInfoLayer::loadPage(int page, bool p1) {
+    m_fields->m_commentCells.clear();
+    InfoLayer::loadPage(page, p1);
+}
+
 void HookedInfoLayer::loadCommentsFinished(cocos2d::CCArray* comments, const char* p1) {
     g_infoLayer = this;
     InfoLayer::loadCommentsFinished(comments, p1);
+    g_infoLayer = nullptr;
+
     auto fields = m_fields.self();
 
     auto req = geode::utils::web::WebRequest();
@@ -41,11 +48,6 @@ void HookedInfoLayer::loadCommentsFinished(cocos2d::CCArray* comments, const cha
             geode::log::error("Extra icon data request was cancelled!");
         }
     });
-}
-
-void HookedInfoLayer::onClose(cocos2d::CCObject* sender) {
-    InfoLayer::onClose(sender);
-    g_infoLayer = nullptr;
 }
 
 void HookedInfoLayer::addCommentCell(CommentCell* cell) {
