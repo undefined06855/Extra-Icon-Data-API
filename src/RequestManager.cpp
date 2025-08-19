@@ -51,7 +51,7 @@ void RequestManager::fetchAndUploadData() {
         if (data.m_shared) jsonData["shared"][mod->getID()] = data.m_shared;
     }
 
-    geode::log::debug("jsonData: {}", jsonData.dump());
+    // geode::log::debug("jsonData: {}", jsonData.dump());
 
     // then send to server
     auto req = geode::utils::web::WebRequest();
