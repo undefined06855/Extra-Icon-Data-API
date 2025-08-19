@@ -1,10 +1,7 @@
 #include "GJGarageLayer.hpp"
-#include "../globals.hpp"
-#include "events.hpp"
+#include "../RequestManager.hpp"
 
-bool HookedGJGarageLayer::init() {
-    if (!GJGarageLayer::init()) return false;
-
-
-    return true;
+void HookedGJGarageLayer::onBack(cocos2d::CCObject* sender) {
+    GJGarageLayer::onBack(sender);
+    RequestManager::get().fetchAndUploadData();
 }

@@ -1,9 +1,11 @@
 #include "MenuLayer.hpp"
 #include <Geode/ui/Popup.hpp>
-#include "../ServerManager.hpp"
+#include "../ArgonVerificationPopup.hpp"
 
 bool HookedMenuLayer::init() {
     if (!MenuLayer::init()) return false;
+
+    if (!geode::Mod::get()->getSavedValue<std::string>("TOKEN_DO_NOT_SHARE", "").empty()) return true;
     
     if (GJAccountManager::get()->m_accountID < 0) {
         auto pop = FLAlertLayer::create(
@@ -26,7 +28,9 @@ bool HookedMenuLayer::init() {
         "sent to your account by a bot.",
         "Cancel", "Ok",
         [this](auto, bool ok){
-            if (ok) ServerManager::get().runArgonAuth();
+            if (ok) {
+                ArgonVerificationPopup::create()->show();
+            }
         },
         false
     );
@@ -34,8 +38,4 @@ bool HookedMenuLayer::init() {
     pop->show();
 
     return true;
-}
-
-void HookedMenuLayer::runArgonAuth() {
-
 }

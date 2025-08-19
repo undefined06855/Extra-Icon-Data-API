@@ -3,7 +3,4 @@
 
 class $modify(HookedMenuLayer, MenuLayer) {
     bool init();
-
-    void runArgonAuth();
-    void 
 };
